@@ -111,3 +111,5 @@ C:\Users\User\smbs_projects\EventManagementAPI\obj\Debug\net8.0\refint\EventMana
 C:\Users\User\smbs_projects\EventManagementAPI\obj\Debug\net8.0\EventManagementAPI.pdb
 C:\Users\User\smbs_projects\EventManagementAPI\obj\Debug\net8.0\EventManagementAPI.genruntimeconfig.cache
 C:\Users\User\smbs_projects\EventManagementAPI\obj\Debug\net8.0\ref\EventManagementAPI.dll
+C:\Users\User\smbs_projects\EventManagementAPI\obj\Debug\net8.0\EventManagementAPI.sourcelink.json
+C:\Users\User\smbs_projects\EventManagementAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
