@@ -4,7 +4,7 @@ using EventManagementAPI.Repositories;
 
 namespace EventManagementAPI.Services
 {
-    // Interfaz del servicio para Sponsor
+  
     public interface ISponsorService
     {
         IEnumerable<Sponsor> GetAll();
@@ -14,7 +14,7 @@ namespace EventManagementAPI.Services
         void RemoveSponsor(Guid id);
     }
 
-    // Implementación del servicio para Sponsor
+   
     public class SponsorService : ISponsorService
     {
         private readonly ISponsorRepository _sponsorRepository;
@@ -34,7 +34,7 @@ namespace EventManagementAPI.Services
             {
                 SponsorId = Guid.NewGuid(),
                 Name = sponsorDTO.Name,
-                // Otros campos necesarios...
+               
             };
             _sponsorRepository.Add(sponsor);
         }
@@ -45,7 +45,6 @@ namespace EventManagementAPI.Services
             if (sponsor != null)
             {
                 sponsor.Name = sponsorDTO.Name;
-                // Otros campos necesarios...
                 _sponsorRepository.Update(sponsor);
             }
         }

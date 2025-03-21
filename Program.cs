@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddControllers();
 
-// Configurar DbContext con Pomelo.EntityFrameworkCore.MySql
+
 builder.Services.AddDbContext<EventManagementContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("https://localhost:7239") // Cambia esto por la URL de tu frontend
+        policy.WithOrigins("https://localhost:7239")
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -52,7 +52,7 @@ var app = builder.Build();
 
 app.UseCors("AllowFrontend");
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

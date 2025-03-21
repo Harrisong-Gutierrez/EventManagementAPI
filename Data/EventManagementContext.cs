@@ -15,14 +15,14 @@ namespace EventManagementAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Relación Evento - Organizador (1 a 1)
+            
             modelBuilder.Entity<Event>()
                 .HasOne(e => e.Organizer)
                 .WithMany()
                 .HasForeignKey(e => e.OrganizerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Relación de clave compuesta para Registration (EventId + ParticipantId)
+            
             modelBuilder.Entity<Registration>()
                 .HasKey(r => new { r.EventId, r.ParticipantId });
 
@@ -36,7 +36,7 @@ namespace EventManagementAPI.Data
                 .WithMany()
                 .HasForeignKey(r => r.ParticipantId);
 
-            // Relación Evento - Patrocinador (1 a muchos)
+           
             modelBuilder.Entity<Sponsor>()
                 .HasOne(s => s.Event)
                 .WithMany(e => e.Sponsors)

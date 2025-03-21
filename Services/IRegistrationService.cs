@@ -4,17 +4,17 @@ using EventManagementAPI.Repositories;
 
 namespace EventManagementAPI.Services
 {
-    // Interfaz del servicio para Registration
+    
     public interface IRegistrationService
     {
         IEnumerable<Registration> GetAll();
-        Registration GetById(Guid registrationId); // Cambié 'id' a 'registrationId'
+        Registration GetById(Guid registrationId); 
         void AddRegistration(RegistrationDto registrationDTO);
-        void UpdateRegistration(Guid registrationId, RegistrationDto registrationDTO); // Cambié 'id' a 'registrationId'
-        void RemoveRegistration(Guid registrationId); // Cambié 'id' a 'registrationId'
+        void UpdateRegistration(Guid registrationId, RegistrationDto registrationDTO); 
+        void RemoveRegistration(Guid registrationId); 
     }
 
-    // Implementación del servicio para Registration
+    
     public class RegistrationService : IRegistrationService
     {
         private readonly IRegistrationRepository _registrationRepository;
@@ -47,7 +47,6 @@ namespace EventManagementAPI.Services
             {
                 registration.EventId = registrationDTO.EventId;
                 registration.ParticipantId = registrationDTO.ParticipantId;
-                // Otros campos necesarios...
                 _registrationRepository.Update(registration);
             }
         }

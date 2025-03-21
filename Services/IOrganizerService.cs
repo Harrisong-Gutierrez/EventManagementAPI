@@ -30,7 +30,7 @@ public class OrganizerService : IOrganizerService
         {
             OrganizerId = Guid.NewGuid(),
             Name = organizerDTO.Name,
-            // Otros campos necesarios...
+          
         };
         _organizerRepository.Add(organizer);
     }
@@ -41,7 +41,6 @@ public class OrganizerService : IOrganizerService
         if (organizer != null)
         {
             organizer.Name = organizerDTO.Name;
-            // Otros campos necesarios...
             _organizerRepository.Update(organizer);
         }
     }
