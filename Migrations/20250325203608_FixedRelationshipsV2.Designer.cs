@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventManagementAPI.Migrations
 {
     [DbContext(typeof(EventManagementContext))]
-    [Migration("20250321144322_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250325203608_FixedRelationshipsV2")]
+    partial class FixedRelationshipsV2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,6 +107,10 @@ namespace EventManagementAPI.Migrations
 
             modelBuilder.Entity("EventManagementAPI.Models.Registration", b =>
                 {
+                    b.Property<Guid>("RegistrationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
                     b.Property<Guid>("EventId")
                         .HasColumnType("char(36)");
 
@@ -116,10 +120,9 @@ namespace EventManagementAPI.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid>("RegistrationId")
-                        .HasColumnType("char(36)");
+                    b.HasKey("RegistrationId");
 
-                    b.HasKey("EventId", "ParticipantId");
+                    b.HasIndex("EventId");
 
                     b.HasIndex("ParticipantId");
 
@@ -153,7 +156,7 @@ namespace EventManagementAPI.Migrations
             modelBuilder.Entity("EventManagementAPI.Models.Event", b =>
                 {
                     b.HasOne("EventManagementAPI.Models.Organizer", "Organizer")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("OrganizerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -170,7 +173,7 @@ namespace EventManagementAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("EventManagementAPI.Models.Participant", "Participant")
-                        .WithMany()
+                        .WithMany("Registrations")
                         .HasForeignKey("ParticipantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -196,6 +199,16 @@ namespace EventManagementAPI.Migrations
                     b.Navigation("Registrations");
 
                     b.Navigation("Sponsors");
+                });
+
+            modelBuilder.Entity("EventManagementAPI.Models.Organizer", b =>
+                {
+                    b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("EventManagementAPI.Models.Participant", b =>
+                {
+                    b.Navigation("Registrations");
                 });
 #pragma warning restore 612, 618
         }

@@ -36,13 +36,13 @@ namespace EventManagementAPI.Controllers
         public ActionResult<Registration> Add(Registration registration)
         {
             _registrationRepository.Add(registration);
-            return CreatedAtAction(nameof(GetById), new { registrationId = registration.ParticipantId }, registration);
+            return CreatedAtAction(nameof(GetById), new { registrationId = registration.RegistrationId }, registration);
         }
 
         [HttpPut("{registrationId}")]
         public ActionResult Update(Guid registrationId, Registration registration)
         {
-            if (registrationId != registration.ParticipantId)
+            if (registrationId != registration.RegistrationId)
             {
                 return BadRequest();
             }

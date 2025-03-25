@@ -1,4 +1,5 @@
-﻿using EventManagementAPI.Models;
+﻿using EventManagementAPI.DTOs; // Añade este using
+using EventManagementAPI.Models;
 using EventManagementAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,8 +34,16 @@ namespace EventManagementAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Sponsor> Add(Sponsor sponsor)
+        public ActionResult<Sponsor> Add([FromBody] SponsorDto sponsorDto) // Cambia a SponsorDto
         {
+            var sponsor = new Sponsor
+            {
+                SponsorId = Guid.NewGuid(),
+                Name = sponsorDto.Name,
+                Description = sponsorDto.Description,
+                EventId = sponsorDto.EventId // Asigna directamente el ID
+            };
+
             _sponsorRepository.Add(sponsor);
             return CreatedAtAction(nameof(GetById), new { sponsorId = sponsor.SponsorId }, sponsor);
         }

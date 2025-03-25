@@ -34,7 +34,9 @@ namespace EventManagementAPI.Services
             {
                 SponsorId = Guid.NewGuid(),
                 Name = sponsorDTO.Name,
-               
+                Description = sponsorDTO.Description,
+                EventId = sponsorDTO.EventId
+
             };
             _sponsorRepository.Add(sponsor);
         }

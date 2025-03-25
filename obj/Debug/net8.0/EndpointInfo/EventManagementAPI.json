@@ -790,17 +790,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Sponsor"
+                "$ref": "#/components/schemas/SponsorDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Sponsor"
+                "$ref": "#/components/schemas/SponsorDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Sponsor"
+                "$ref": "#/components/schemas/SponsorDto"
               }
             }
           }
@@ -934,6 +934,9 @@
   "components": {
     "schemas": {
       "Event": {
+        "required": [
+          "organizerId"
+        ],
         "type": "object",
         "properties": {
           "eventId": {
@@ -1002,6 +1005,13 @@
           "phone": {
             "type": "string",
             "nullable": true
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1023,6 +1033,13 @@
           },
           "phone": {
             "type": "string",
+            "nullable": true
+          },
+          "registrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Registration"
+            },
             "nullable": true
           }
         },
@@ -1077,6 +1094,28 @@
           },
           "event": {
             "$ref": "#/components/schemas/Event"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SponsorDto": {
+        "type": "object",
+        "properties": {
+          "sponsorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventId": {
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false

@@ -1,5 +1,6 @@
 ﻿using EventManagementAPI.Data;
 using EventManagementAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventManagementAPI.Repositories
 {
@@ -21,9 +22,16 @@ namespace EventManagementAPI.Repositories
             _context = context;
         }
 
-        public IEnumerable<Organizer> GetAll() => _context.Organizers.ToList();
+        public IEnumerable<Organizer> GetAll() =>
+       _context.Organizers
+           .Include(o => o.Events)  // Incluir Eventos
+           .ToList();
 
-        public Organizer GetById(Guid organizerId) => _context.Organizers.Find(organizerId);
+        public Organizer GetById(Guid organizerId) =>
+       _context.Organizers
+           .Include(o => o.Events)   // Incluir Eventos
+           .FirstOrDefault(o => o.OrganizerId == organizerId);
+
 
         public void Add(Organizer organizer)
         {

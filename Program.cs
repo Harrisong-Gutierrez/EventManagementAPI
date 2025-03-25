@@ -1,4 +1,5 @@
 using EventManagementAPI.Data;
+using System.Text.Json.Serialization;
 using EventManagementAPI.Repositories;
 using EventManagementAPI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,12 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+
 
 
 

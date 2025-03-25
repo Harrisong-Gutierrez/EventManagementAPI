@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EventManagementAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FixedRelationshipsV2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -81,14 +81,14 @@ namespace EventManagementAPI.Migrations
                 name: "Registrations",
                 columns: table => new
                 {
+                    RegistrationId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     EventId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     ParticipantId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    RegistrationId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     RegistrationDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Registrations", x => new { x.EventId, x.ParticipantId });
+                    table.PrimaryKey("PK_Registrations", x => x.RegistrationId);
                     table.ForeignKey(
                         name: "FK_Registrations_Events_EventId",
                         column: x => x.EventId,
@@ -131,6 +131,11 @@ namespace EventManagementAPI.Migrations
                 name: "IX_Events_OrganizerId",
                 table: "Events",
                 column: "OrganizerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registrations_EventId",
+                table: "Registrations",
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Registrations_ParticipantId",

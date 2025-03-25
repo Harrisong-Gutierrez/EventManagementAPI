@@ -464,8 +464,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "sponsor",
-        "Type": "EventManagementAPI.Models.Sponsor",
+        "Name": "sponsorDto",
+        "Type": "EventManagementAPI.DTOs.SponsorDto",
         "IsRequired": true
       }
     ],
