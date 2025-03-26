@@ -355,8 +355,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "registration",
-        "Type": "EventManagementAPI.Models.Registration",
+        "Name": "registrationDto",
+        "Type": "EventManagementAPI.DTOs.RegistrationDto",
         "IsRequired": true
       }
     ],

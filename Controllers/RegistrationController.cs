@@ -1,4 +1,5 @@
-﻿using EventManagementAPI.Models;
+﻿using EventManagementAPI.DTOs; // Añade este using
+using EventManagementAPI.Models;
 using EventManagementAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,8 +34,15 @@ namespace EventManagementAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Registration> Add(Registration registration)
+        public ActionResult<Registration> Add([FromBody] RegistrationDto registrationDto) // Usa el DTO
         {
+            var registration = new Registration
+            {
+                EventId = registrationDto.EventId,
+                ParticipantId = registrationDto.ParticipantId,
+                RegistrationDate = DateTime.UtcNow // Fecha generada automáticamente
+            };
+
             _registrationRepository.Add(registration);
             return CreatedAtAction(nameof(GetById), new { registrationId = registration.RegistrationId }, registration);
         }
