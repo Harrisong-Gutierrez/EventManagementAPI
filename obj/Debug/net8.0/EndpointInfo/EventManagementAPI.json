@@ -1034,13 +1034,6 @@
           "phone": {
             "type": "string",
             "nullable": true
-          },
-          "registrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Registration"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
