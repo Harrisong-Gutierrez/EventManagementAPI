@@ -969,20 +969,6 @@
           },
           "organizer": {
             "$ref": "#/components/schemas/Organizer"
-          },
-          "registrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Registration"
-            },
-            "nullable": true
-          },
-          "sponsors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Sponsor"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false

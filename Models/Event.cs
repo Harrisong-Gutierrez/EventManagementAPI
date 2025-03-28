@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EventManagementAPI.Models
 {
@@ -11,14 +12,17 @@ namespace EventManagementAPI.Models
         public string Location { get; set; }
         public int MaxCapacity { get; set; }
 
-        // Aquí se requiere solo el OrganizerId
-        [Required]  // Agregar esta anotación para validar que se requiere solo el OrganizerId
+        
+        [Required]  
         public Guid OrganizerId { get; set; }
 
-        // El objeto Organizer es opcional
-        public Organizer? Organizer { get; set; } // Ahora es opcional
 
+        public Organizer? Organizer { get; set; }
+
+        [JsonIgnore]
         public List<Registration> Registrations { get; set; } = new List<Registration>();
+
+        [JsonIgnore]
         public List<Sponsor> Sponsors { get; set; } = new List<Sponsor>();
     }
 }

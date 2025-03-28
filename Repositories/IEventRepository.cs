@@ -28,7 +28,7 @@ namespace EventManagementAPI.Repositories
 
         public IEnumerable<Event> GetAll() =>
         _context.Events
-            .Include(e => e.Organizer)    // Incluir Organizador
+            .Include(e => e.Organizer)   
             .ToList();
 
         public Event GetById(Guid eventId) =>
